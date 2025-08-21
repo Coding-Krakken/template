@@ -16,11 +16,12 @@ import glob
 import requests
 import logging
 from pathlib import Path
-
-# --- CONFIGURATION ---
-GH_PAT = os.getenv('GH_PAT') or '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'  # Set this in your CI/CD secrets or use provided token
 import subprocess
 import re
+
+# --- CONFIGURATION ---
+# GH_TOKEN should be set in the environment by GitHub Actions secrets
+GH_TOKEN = os.getenv('GH_TOKEN')
 
 def get_repo_info():
     try:
@@ -49,18 +50,48 @@ def parse_issue_md(md_path):
         lines = f.readlines()
     title = None
     body = ''
+    # First, check for a 'title:' metadata line (YAML frontmatter or similar)
     for line in lines:
-        if not title and line.strip().startswith('# '):
-            title = line.strip().lstrip('# ').strip()
-        else:
-            body += line
+        meta_match = re.match(r'^title:\s*(.+)', line.strip(), re.IGNORECASE)
+        if meta_match:
+            title = meta_match.group(1).strip()
+            continue
+    # If no metadata title, fall back to first H1
     if not title:
-        title = md_path.stem
+        for line in lines:
+            if line.strip().startswith('# '):
+                candidate = line.strip().lstrip('# ').strip()
+                if candidate.lower() not in [
+                    'github issue template',
+                    '📝 github issue template',
+                    'issue template',
+                ] and candidate and not candidate.isdigit():
+                    title = candidate
+                    break
+    # Build body (skip metadata line if present)
+    for line in lines:
+        if re.match(r'^title:\s*.+', line.strip(), re.IGNORECASE):
+            continue
+        body += line
+    if not title:
+        # Fallback: use first non-empty, non-numeric line that isn't a template title
+        for line in lines:
+            candidate = line.strip().lstrip('# ').strip()
+            if candidate and not candidate.isdigit() and candidate.lower() not in [
+                'github issue template',
+                '📝 github issue template',
+                'issue template',
+            ]:
+                title = candidate
+                break
+    if not title:
+        # As a last resort, use a generic placeholder
+        title = 'Untitled Issue'
     return title, body
 
 def create_github_issue(title, body, assignees=None, labels=None):
     headers = {
-        'Authorization': f'token {GH_PAT}',
+        'Authorization': f'token {GH_TOKEN}',
         'Accept': 'application/vnd.github+json',
     }
     # Add 'copilot' label and mention Copilot in the body
@@ -86,8 +117,8 @@ def create_github_issue(title, body, assignees=None, labels=None):
         return False
 
 def main():
-    if not GH_PAT:
-        logging.error('GH_PAT environment variable not set.')
+    if not GH_TOKEN:
+        logging.error('GH_TOKEN environment variable not set.')
         return
     if not ISSUES_DIR.exists():
         logging.error(f'Issues directory {ISSUES_DIR} does not exist.')
@@ -110,5 +141,18 @@ def main():
             except Exception as e:
                 logging.error(f"Failed to delete {md_path}: {e}")
 
+
+def test_token():
+    headers = {
+        'Authorization': f'token {GH_TOKEN}',
+        'Accept': 'application/vnd.github+json',
+    }
+    response = requests.get('https://api.github.com/user', headers=headers)
+    if response.status_code == 200:
+        logging.info(f"Token is valid. Authenticated as: {response.json().get('login')}")
+    else:
+        logging.error(f"Token test failed: {response.status_code} {response.text}")
+
 if __name__ == '__main__':
+    test_token()
     main()
