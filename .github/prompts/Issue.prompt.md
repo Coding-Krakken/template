@@ -73,7 +73,7 @@ For each task **T1..T5**:
   * **Labels**: `type:*` (feature/chore/infra/test), `size:S`, `parallelizable`, `no-conflict`.
   * **Assignee**: Copilot account.
 
-* Save each issue as a markdown file in `.github/issues/` named sequentially: `001.md`, `002.md`, `003.md`, `004.md`, `005.md`.
+* Save each issue as a markdown file in `.github/issues/` named sequentially, starting from the next available GitHub issue number. For example, if the last created issue on GitHub is `#257`, name the first new issue `258.md`, the next `259.md`, and so on.
 
 * Do **not** use `gh` CLI, REST API, or open PRs/branches. Issues will be created on GitHub by a separate script.
 
@@ -98,7 +98,7 @@ For each task **T1..T5**:
 
 ## 5) Idempotency & Clean-up
 
-* If issues already exist, append the next available sequential number and continue; do not overwrite.
+* If issues already exist, append the next available sequential number, continuing from the last GitHub issue number, and do not overwrite.
 * Post a short summary comment linking all five issues.
 
 ---
