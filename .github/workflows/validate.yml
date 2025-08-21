@@ -1,0 +1,41 @@
+name: Validate Process
+
+on:
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Validate process graph
+        run: |
+          python ci/validate_graph.py
+
+      - name: Check gates artifacts
+        run: |
+          python ci/check_gates.py
+
+      - name: Render Mermaid diagram
+        run: |
+          python ci/render_diagrams.py --output graph.mmd
+        continue-on-error: true
+      - name: Upload diagram artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: process-diagram
+          path: graph.mmd

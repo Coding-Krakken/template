@@ -1,0 +1,27 @@
+# Privacy & Data Protection Requirements
+
+data_minimization:
+  description: >
+    Collect and retain only the minimum amount of personal data necessary to
+    perform the stated business purpose.  Avoid collecting sensitive
+    information unless absolutely required.
+
+consent_management:
+  description: >
+    Obtain explicit user consent before collecting or processing personal data.
+    Provide clear notice and the ability to withdraw consent at any time.
+
+data_retention:
+  retention_period_days: 365  # maximum retention period for personal data
+  deletion_policy: >
+    Personal data must be deleted or anonymized after the retention period
+    expires, or sooner if no longer needed for the original purpose.
+
+access_controls:
+  role_based_access: true
+  least_privilege: true
+  audit_logging: true
+
+incident_response:
+  notification_window_hours: 72  # time frame to notify authorities/users after a breach
+  procedures_reference: runbooks/incident_response.md

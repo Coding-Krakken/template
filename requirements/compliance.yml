@@ -1,0 +1,30 @@
+# Regulatory & Compliance Requirements
+
+standards:
+  - name: GDPR
+    applicable: true
+    description: >
+      Ensure compliance with the General Data Protection Regulation for all
+      personal data collected from EU residents.  Follow principles of
+      lawfulness, fairness, transparency, purpose limitation, data minimization,
+      accuracy, storage limitation, integrity and confidentiality.
+  - name: SOC2
+    applicable: false
+    description: >
+      Service Organization Control 2 compliance may be required if offering a
+      SaaS product to enterprise customers.  Mark as applicable when pursuing
+      certification.
+  - name: HIPAA
+    applicable: false
+    description: >
+      Health Insurance Portability and Accountability Act requirements apply if
+      handling protected health information (PHI).  Set to true and define
+      additional controls when working in healthcare.
+
+export_control:
+  restricted_countries: [IR, KP, SY]  # ISO country codes where exports are restricted
+  technology_control_plan_required: false
+
+recordkeeping:
+  audit_retention_years: 7
+  policy_reference: runbooks/compliance_recordkeeping.md
