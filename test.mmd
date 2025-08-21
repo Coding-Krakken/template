@@ -1,0 +1,17 @@
+flowchart TD
+N-start["N-start"]
+D-branch["D-branch"]
+G-gate["G-gate"]
+N-end["N-end"]
+N-start --> D-branch
+D-branch --|condition1|--> G-gate
+D-branch --|else|--> N-end
+G-gate -- pass --> N-end
+G-gate -- fail --> N-start
+classDef gate fill:#FFF3CD,stroke:#E0A800,stroke-width:2px;
+classDef decision fill:#D1ECF1,stroke:#0C5460,stroke-width:2px;
+classDef activity fill:#E2E3E5,stroke:#6C757D,stroke-width:2px;
+class N-start activity;
+class D-branch decision;
+class G-gate gate;
+class N-end activity;
