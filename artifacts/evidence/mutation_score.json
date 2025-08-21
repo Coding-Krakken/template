@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-21T17:08:00.383954",
+  "tool": "mutmut",
+  "target_score": 0.7,
+  "actual_score": 0.7428571428571429,
+  "passed": true,
+  "total_mutations": 35,
+  "killed_mutations": 26,
+  "survived_mutations": 9,
+  "skipped_mutations": 0,
+  "timeout_mutations": 0,
+  "evidence_level": "HIGH"
+}
