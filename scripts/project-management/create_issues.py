@@ -18,7 +18,7 @@ import logging
 from pathlib import Path
 
 # --- CONFIGURATION ---
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN') or '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'  # Set this in your CI/CD secrets or use provided token
+GH_PAT = os.getenv('GH_PAT') or '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'  # Set this in your CI/CD secrets or use provided token
 import subprocess
 import re
 
@@ -60,7 +60,7 @@ def parse_issue_md(md_path):
 
 def create_github_issue(title, body, assignees=None, labels=None):
     headers = {
-        'Authorization': f'token {GITHUB_TOKEN}',
+        'Authorization': f'token {GH_PAT}',
         'Accept': 'application/vnd.github+json',
     }
     # Add 'copilot' label and mention Copilot in the body
@@ -86,8 +86,8 @@ def create_github_issue(title, body, assignees=None, labels=None):
         return False
 
 def main():
-    if not GITHUB_TOKEN:
-        logging.error('GITHUB_TOKEN environment variable not set.')
+    if not GH_PAT:
+        logging.error('GH_PAT environment variable not set.')
         return
     if not ISSUES_DIR.exists():
         logging.error(f'Issues directory {ISSUES_DIR} does not exist.')
