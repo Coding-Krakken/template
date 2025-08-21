@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - .github/issues/*.md
+permissions:
+  issues: write
 
 jobs:
   create-issues:
