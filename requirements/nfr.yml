@@ -1,5 +1,16 @@
+
 availability: 99.9%
-latency: 200ms
-privacy: GDPR, SOC2
-security: CodeQL, Semgrep, gitleaks
-observability: opentelemetry, metrics, logs
+latency: 200ms (p99 for all endpoints)
+privacy:
+	- GDPR
+	- SOC2
+security:
+	- CodeQL
+	- Semgrep
+	- gitleaks
+	- SAST/DAST
+observability:
+	tracing: opentelemetry
+	metrics: prometheus
+	logs: structured, centralized
+

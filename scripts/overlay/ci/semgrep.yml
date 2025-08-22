@@ -10,4 +10,30 @@ rules:
       category: security
       confidence: HIGH
       technology: generic
-    # Example stub rule, add more as needed
+  - id: no-eval
+    pattern: eval($EXPR)
+    message: 'Use of eval is dangerous and should be avoided.'
+    severity: WARNING
+    languages: [javascript, typescript]
+    metadata:
+      category: security
+      confidence: MEDIUM
+      technology: js
+  - id: no-hardcoded-credentials
+    pattern: password = "$CRED"
+    message: 'Hardcoded credentials detected.'
+    severity: ERROR
+    languages: [python, javascript, typescript, go, rust]
+    metadata:
+      category: security
+      confidence: HIGH
+      technology: generic
+  - id: no-todo-comments
+    pattern: // TODO
+    message: 'TODO comments should be resolved before merging.'
+    severity: INFO
+    languages: [javascript, typescript]
+    metadata:
+      category: quality
+      confidence: LOW
+      technology: js
