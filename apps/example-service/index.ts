@@ -1,6 +1,15 @@
 import express from 'express';
-import { FeatureFlags } from '../../packages/feature-flags/index.js';
+// Use dynamic path resolution for subdirectory support
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { setupOtel } from './otel.js';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const featureFlagsPath = path.resolve(
+  __dirname,
+  '../../packages/feature-flags/index.js',
+);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { FeatureFlags } = require(featureFlagsPath);
 
 const app = express();
 const flags = new FeatureFlags();

@@ -4,21 +4,22 @@ set -euo pipefail
 # Template Self-Check Script
 # Verifies required template paths exist (template integrity only)
 
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REQUIRED_PATHS=(
-  "scripts/overlay/ci/config_eval.ts"
-  "scripts/overlay/ci/coverage.sh"
-  "scripts/overlay/ci/docs_check.sh"
-  "scripts/overlay/github/ci.yml"
-  "scripts/apply_overlay.sh"
-  "packages/feature-flags/index.ts"
-  "packages/otel-stubs/index.ts"
-  "services/example-service-ts/index.ts"
-  "services/example-service-ts/index.test.ts"
-  "docs/playbook.md"
-  "docs/prompts/00_CALIBRATION.md"
-  "docs/prompts/10_ATOMIC_TASK.md"
-  "docs/prompts/20_GUARDRAIL.md"
-  "docs/prompts/30_REVIEW.md"
+  "$SCRIPT_DIR/../scripts/overlay/ci/config_eval.ts"
+  "$SCRIPT_DIR/../scripts/overlay/ci/coverage.sh"
+  "$SCRIPT_DIR/../scripts/overlay/ci/docs_check.sh"
+  "$SCRIPT_DIR/../scripts/overlay/github/ci.yml"
+  "$SCRIPT_DIR/../scripts/apply_overlay.sh"
+  "$SCRIPT_DIR/../packages/feature-flags/index.ts"
+  "$SCRIPT_DIR/../packages/otel-stubs/index.ts"
+  "$SCRIPT_DIR/../services/example-service-ts/index.ts"
+  "$SCRIPT_DIR/../services/example-service-ts/index.test.ts"
+  "$SCRIPT_DIR/../docs/playbook.md"
+  "$SCRIPT_DIR/../docs/prompts/00_CALIBRATION.md"
+  "$SCRIPT_DIR/../docs/prompts/10_ATOMIC_TASK.md"
+  "$SCRIPT_DIR/../docs/prompts/20_GUARDRAIL.md"
+  "$SCRIPT_DIR/../docs/prompts/30_REVIEW.md"
 )
 
 missing=0
