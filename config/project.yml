@@ -1,0 +1,17 @@
+project:
+  name: "sample-project"
+  language: "ts"        # ts|py|go|rust|jvm|dotnet (affects CI tasks & example app)
+  monorepo: true
+  methodology:
+    process: "scrum"    # scrum|kanban|waterfall|spiral|rad
+    engineering: ["tdd","bdd","devops"]  # enable practices
+  coverage:
+    threshold: 85
+  security:
+    sdlc_checks: ["codeql","semgrep","secret-scan"]
+  rollout:
+    feature_flags: true
+  observability:
+    opentelemetry: true
+  docs:
+    require_update_on_api_change: true
