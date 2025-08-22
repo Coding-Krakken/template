@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.acceptSuggestionOnEnter": "smart",
+  "terminal.integrated.scrollback": 10000,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
