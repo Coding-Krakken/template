@@ -1,0 +1,13 @@
+# Canonical Semgrep config for OSS rule set
+rules:
+  - id: no-secrets
+    pattern: |
+      $SECRET
+    message: 'Possible secret detected'
+    severity: ERROR
+    languages: [python, javascript, typescript, go, rust]
+    metadata:
+      category: security
+      confidence: HIGH
+      technology: generic
+    # Example stub rule, add more as needed

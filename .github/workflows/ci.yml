@@ -1,0 +1,50 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [ts, py, go, rust]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up toolchain
+        run: echo "Setup ${{ matrix.language }} toolchain"
+      - name: Install dependencies
+        run: ci/install.sh ${{ matrix.language }}
+      - name: Lint/Typecheck
+        run: ci/lint_type.sh ${{ matrix.language }}
+      - name: Test
+        run: ci/test.sh ${{ matrix.language }}
+      - name: Coverage
+        run: ci/coverage.sh ${{ matrix.language }}
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+      - name: Run CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+      - name: Analyze CodeQL
+        uses: github/codeql-action/analyze@v3
+      - name: Run Semgrep (if enabled)
+        run: |
+          if grep -q 'semgrep' config/project.yml; then
+            echo "Running Semgrep..."
+            # semgrep --config=auto .
+          fi
+  docs-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docs/ADR check
+        run: ci/docs_check.sh

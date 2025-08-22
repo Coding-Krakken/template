@@ -1,13 +1,15 @@
-# Playbook
+# Template Engineering Playbook
 
-## Workflow
+## Process: Scrum
 
-- Branches: feature, bugfix, release
-- Releases: tag-based, CI gated
-- Triage: PRs require tests, docs, and atomic commits
-- Incident: Follow runbooks, update ADRs if architecture changes
+This template repository is engineered for teams using Scrum. All template features, CI gates, and overlays are designed to support iterative, sprint-based development, backlog management, and atomic delivery.
 
-## Methodology
+### Key Practices
 
-- Scrum: Sprint cadence, Definition of Done (DoD) required
-- Kanban: WIP limits, continuous flow
+- Sprint planning and backlog refinement
+- Atomic, auditable commits
+- CI/CD gates for coverage, docs, security, and feature toggles
+- ADRs and docs updated on API change
+- Feature flags and observability stubs for safe experimentation
+
+Refer to the overlay system and canonical scripts for repeatable, idempotent template updates.

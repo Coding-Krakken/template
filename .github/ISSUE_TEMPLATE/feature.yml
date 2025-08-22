@@ -1,0 +1,20 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+labels: [feature]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Description
+  - type: textarea
+    id: description
+    attributes:
+      label: What is the feature?
+      description: Describe the feature and its value.
+      placeholder: Feature details...
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: What must be true for this to be complete?
+      placeholder: Criteria...

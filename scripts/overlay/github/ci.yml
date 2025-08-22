@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, complete]
+  pull_request:
+    branches: [main, complete]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Export Template Config Vars
+        run: |
+          eval "$(node ci/config_eval.ts | awk -F= '{print \"export \" $1 \"=\\\"\" $2 \"\\\"\"}')"
+          env | grep '^TPL_'
+
+      - name: Run Coverage Gate
+        run: ci/coverage.sh
+
+      - name: Run Docs Gate
+        run: ci/docs_check.sh
+
+      # TODO: Add security lanes, feature flags, OTEL, etc.
