@@ -5,8 +5,11 @@ THRESHOLD=$(awk '/threshold:/ {print $2}' config/project.yml)
 case "$LANG" in
 ts)
   echo "Checking TypeScript coverage..."
-  # COVERAGE=$(npx nyc report --reporter=text-summary | awk '/Statements/ {print $4}' | tr -d '%')
-  # if (( COVERAGE < THRESHOLD )); then echo "Coverage $COVERAGE below threshold $THRESHOLD"; exit 1; fi
+  COVERAGE=$(npx nyc report --reporter=text-summary | awk '/Statements/ {print $4}' | tr -d '%')
+  if (( COVERAGE < THRESHOLD )); then
+    echo "Coverage $COVERAGE below threshold $THRESHOLD"
+    exit 1
+  fi
   ;;
 py)
   echo "Checking Python coverage..."

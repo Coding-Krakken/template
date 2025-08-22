@@ -1,14 +1,18 @@
 // Canonical Feature-Flag Facade for Template Repo
+// Simple feature flag system for template
 
 export type FeatureFlagContext = Record<string, any>;
 
+const flags: Record<string, boolean> = {
+  enableMetrics: true,
+  experimentalFeature: false,
+};
+
 export function isEnabled(flag: string, context?: FeatureFlagContext): boolean {
-  // No-op provider: always returns false (stub)
-  // TODO: Integrate with real feature flag system in downstream projects
-  return false;
+  // Basic provider: returns flag value or false if not set
+  return !!flags[flag];
 }
 
-// Example usage:
-// if (isEnabled('new-dashboard')) {
-//   // ...enable feature...
-// }
+export function setFeatureFlag(flag: string, value: boolean): void {
+  flags[flag] = value;
+}
