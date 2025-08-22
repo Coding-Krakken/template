@@ -1,0 +1,23 @@
+{
+  "name": "Universal Template DevContainer",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/devcontainers/features/go:1": {},
+    "ghcr.io/devcontainers/features/rust:1": {}
+  },
+  "postCreateCommand": "just bootstrap || make bootstrap",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-python.python",
+        "golang.go",
+        "rust-lang.rust-analyzer",
+        "streetsidesoftware.code-spell-checker",
+        "GitHub.copilot"
+      ]
+    }
+  }
+}

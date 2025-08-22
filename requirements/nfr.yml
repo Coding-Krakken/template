@@ -1,0 +1,5 @@
+availability: 99.9%
+latency: 200ms
+privacy: GDPR, SOC2
+security: CodeQL, Semgrep, gitleaks
+observability: opentelemetry, metrics, logs

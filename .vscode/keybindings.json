@@ -1,0 +1,15 @@
+[
+  {
+    "key": "tab",
+    "command": "editor.action.inlineSuggest.commit",
+    "when": "inlineSuggestionVisible && editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+alt+left",
+    "command": "workbench.action.previousEditor"
+  }
+]
