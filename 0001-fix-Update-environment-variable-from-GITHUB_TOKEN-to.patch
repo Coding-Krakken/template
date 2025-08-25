@@ -1,0 +1,59 @@
+From c1880a1e8cb4e799442a7f1aee7f53aa86ff0e19 Mon Sep 17 00:00:00 2001
+From: Coding-Krakken <davidtraversmailbox@gmail.com>
+Date: Thu, 21 Aug 2025 12:21:41 -0400
+Subject: [PATCH 1/2] fix: Update environment variable from GITHUB_TOKEN to
+ GH_PAT in issue creation script
+
+---
+ .github/workflows/create-issues.yml         | 2 +-
+ scripts/project-management/create_issues.py | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/.github/workflows/create-issues.yml b/.github/workflows/create-issues.yml
+index 8074e7e..3db5a7d 100644
+--- a/.github/workflows/create-issues.yml
++++ b/.github/workflows/create-issues.yml
+@@ -24,6 +24,6 @@ jobs:
+           pip install requests
+       - name: Run issue creation script
+         env:
+-          GH_PAT: ${{ secrets.GH_PAT }}
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         run: |
+           python scripts/project-management/create_issues.py
+diff --git a/scripts/project-management/create_issues.py b/scripts/project-management/create_issues.py
+index ca5ab61..d5b33bd 100644
+--- a/scripts/project-management/create_issues.py
++++ b/scripts/project-management/create_issues.py
+@@ -18,7 +18,7 @@ import logging
+ from pathlib import Path
+ 
+ # --- CONFIGURATION ---
+-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN') or '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'  # Set this in your CI/CD secrets or use provided token
++GH_PAT = os.getenv('GH_PAT') or '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'  # Set this in your CI/CD secrets or use provided token
+ import subprocess
+ import re
+ 
+@@ -60,7 +60,7 @@ def parse_issue_md(md_path):
+ 
+ def create_github_issue(title, body, assignees=None, labels=None):
+     headers = {
+-        'Authorization': f'token {GITHUB_TOKEN}',
++        'Authorization': f'token {GH_PAT}',
+         'Accept': 'application/vnd.github+json',
+     }
+     # Add 'copilot' label and mention Copilot in the body
+@@ -86,8 +86,8 @@ def create_github_issue(title, body, assignees=None, labels=None):
+         return False
+ 
+ def main():
+-    if not GITHUB_TOKEN:
+-        logging.error('GITHUB_TOKEN environment variable not set.')
++    if not GH_PAT:
++        logging.error('GH_PAT environment variable not set.')
+         return
+     if not ISSUES_DIR.exists():
+         logging.error(f'Issues directory {ISSUES_DIR} does not exist.')
+-- 
+2.49.0.windows.1
+
