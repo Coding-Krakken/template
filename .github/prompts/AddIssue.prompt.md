@@ -2,6 +2,13 @@
 
 # Copilot Add Issue Prompt (Enhanced)
 
+## Dual Root Guidance
+This repository has two project roots:
+- The **application root** (current working directory) is for the main product code and development.
+- The **template root** (`template/`) contains the Universal Hybrid Process Template and all auxiliary files/artifacts for process enforcement, traceability, and evidence.
+
+Copilot must always distinguish which root a file or artifact belongs to. Application code, features, and product development are in the application root. Process, workflow, gates, artifacts, and compliance files are in the template root. All instructions, prompts, and automation should explicitly reference the correct root for each file or artifact.
+
 ## Purpose
 This prompt instructs Copilot to add a new issue to the repository, using all available tools and techniques to retrieve and infer as much relevant context as possible—even if the user provides minimal input. The workflow and formatting must mirror `Issue.prompt.md`.
 

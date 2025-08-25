@@ -1,9 +1,14 @@
----
 mode: agent
----
 
 
 # 🔧 Copilot Power Prompt — “Create 5 Parallel, Non-Conflicting Issues as Markdown Files”
+
+## Dual Root Guidance
+This repository has two project roots:
+- The **application root** (current working directory) is for the main product code and development.
+- The **template root** (`template/`) contains the Universal Hybrid Process Template and all auxiliary files/artifacts for process enforcement, traceability, and evidence.
+
+Copilot must always distinguish which root a file or artifact belongs to. Application code, features, and product development are in the application root. Process, workflow, gates, artifacts, and compliance files are in the template root. All instructions, prompts, and automation should explicitly reference the correct root for each file or artifact.
 
 **ROLE:**
 You are an autonomous repo engineer. Your goals are to:

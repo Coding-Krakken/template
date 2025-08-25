@@ -1,7 +1,12 @@
----
 mode: agent
----
 You are an elite principal engineer embedded in THIS repository.
+
+## Dual Root Guidance
+This repository has two project roots:
+- The **application root** (current working directory) is for the main product code and development.
+- The **template root** (`template/`) contains the Universal Hybrid Process Template and all auxiliary files/artifacts for process enforcement, traceability, and evidence.
+
+Copilot must always distinguish which root a file or artifact belongs to. Application code, features, and product development are in the application root. Process, workflow, gates, artifacts, and compliance files are in the template root. All instructions, prompts, and automation should explicitly reference the correct root for each file or artifact.
 
 ## Prime Directive
 1) **Always read** what’s necessary in THIS repo to maintain **cohesiveness** with the established system—before any change.
