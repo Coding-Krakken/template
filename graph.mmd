@@ -1,0 +1,49 @@
+flowchart TD
+N-vision["N-vision"]
+N-discovery["N-discovery"]
+D-arch["D-arch"]
+N-threatmodel["N-threatmodel"]
+G-design["G-design"]
+N-planning["N-planning"]
+N-build["N-build"]
+G-verify["G-verify"]
+N-fix["N-fix"]
+E-experiment["E-experiment"]
+N-release["N-release"]
+O-operate["O-operate"]
+D-calibrate["D-calibrate"]
+N-vision --> N-discovery
+N-discovery --> D-arch
+D-arch --|risk <= medium and nfr_covered|--> G-design
+D-arch --|else|--> N-threatmodel
+N-threatmodel --> D-arch
+G-design -- pass --> N-planning
+G-design -- fail --> D-arch
+N-planning --> N-build
+N-build --> G-verify
+G-verify -- pass --> E-experiment
+G-verify -- fail --> N-fix
+N-fix --> N-build
+E-experiment --|lift >= min and burn_rate <= max|--> N-release
+E-experiment --|burn_rate > max|--> N-fix
+E-experiment --|lift < min|--> D-arch
+N-release --> O-operate
+O-operate --> D-calibrate
+D-calibrate --|recalibration_needed|--> D-arch
+D-calibrate --|else|--> N-vision
+classDef gate fill:#FFF3CD,stroke:#E0A800,stroke-width:2px;
+classDef decision fill:#D1ECF1,stroke:#0C5460,stroke-width:2px;
+classDef activity fill:#E2E3E5,stroke:#6C757D,stroke-width:2px;
+class N-vision activity;
+class N-discovery activity;
+class D-arch decision;
+class N-threatmodel activity;
+class G-design gate;
+class N-planning activity;
+class N-build activity;
+class G-verify gate;
+class N-fix activity;
+class E-experiment decision;
+class N-release activity;
+class O-operate activity;
+class D-calibrate decision;
