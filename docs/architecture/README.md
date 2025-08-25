@@ -205,3 +205,25 @@ python3 ci/render_diagrams.py --output flowchart.mmd
 
 ---
 
+## 📝 Monaco Editor Integration (Mobile)
+
+### Decision
+Monaco Editor will be integrated into the mobile client via a WebView wrapper, enabling full VS Code editing capabilities and supporting mobile-specific UX enhancements (selection handles, find/replace, add-cursor button).
+
+### Rationale
+- Aligns with VS Code/Code OSS standards and user expectations
+- Enables feature parity with desktop code-server
+- Supports mobile ergonomics and future extensibility
+- Reduces implementation risk by reusing proven editor technology
+
+### Consequences
+- Requires bridge for file operations, key events, and mobile gestures
+- WebView performance must be optimized for mobile devices
+- Security and privacy must be enforced at the WebView boundary
+
+### Traceability
+- Linked to product vision in `docs/vision.md`
+- Supported by ADR in `artifacts/adr/ADR-20250825-monaco-webview.md`
+- Enables features in `apps/mobile/src/components/EditorWebView.tsx`
+- Test coverage to be tracked in CI and traceability matrix
+

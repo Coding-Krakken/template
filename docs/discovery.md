@@ -27,3 +27,10 @@ analysis.  Highlight pain points, user journeys, and unmet needs.
 
 Identify risks discovered during discovery (technical, market, regulatory).  Propose
 mitigations or experiments to reduce uncertainty.
+
+## Editor Technology Decision
+
+After evaluating alternatives for mobile code editing, we will integrate Monaco Editor via WebView. This approach is documented in [ADR-20250825-monaco-webview.md](../artifacts/adr/ADR-20250825-monaco-webview.md) and detailed in the architecture README. It supports feature parity, mobile ergonomics, and extensibility, with security and performance as priorities.
+
+- See: [Architecture README](../docs/architecture/README.md)
+- See: [ADR-20250825-monaco-webview.md](../artifacts/adr/ADR-20250825-monaco-webview.md)

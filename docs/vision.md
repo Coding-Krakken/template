@@ -139,3 +139,10 @@ Build a **universal, language-agnostic, process-as-code system** that Copilot (a
   6. won’t advance past the gate unless evidence is green.
 * When a PR fails a gate, Copilot **pinpoints the missing evidence** and generates the artifact or fix (e.g., adds fuzz tests, improves perf, updates SBOM).
 
+## Editor Integration: Monaco via WebView (Mobile)
+
+To deliver a remote-first mobile VS Code client with full editing capabilities, we will integrate the Monaco Editor using a WebView wrapper. This decision is documented in [ADR-20250825-monaco-webview.md](../artifacts/adr/ADR-20250825-monaco-webview.md) and detailed in the architecture README. It enables feature parity, mobile ergonomics, and future extensibility, while maintaining security and performance standards.
+
+- See: [Architecture README](../docs/architecture/README.md)
+- See: [ADR-20250825-monaco-webview.md](../artifacts/adr/ADR-20250825-monaco-webview.md)
+
