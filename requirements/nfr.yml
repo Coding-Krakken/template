@@ -22,5 +22,6 @@ security:
 
 maintainability:
   code_coverage_min: 0.8              # minimum acceptable code coverage
+  mutation_score_min: 0.7             # minimum acceptable mutation testing score
   dependency_update_interval_days: 30  # frequency of dependency updates
   documentation_completeness: 1.0       # 1.0 = complete

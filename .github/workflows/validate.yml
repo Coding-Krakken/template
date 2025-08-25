@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml
+          pip install pyyaml pytest mutmut
 
       - name: Validate process graph
         run: |
@@ -28,6 +28,11 @@ jobs:
       - name: Check gates artifacts
         run: |
           python ci/check_gates.py
+
+      - name: Run mutation testing
+        run: |
+          python ci/check_mutation.py --target-score 0.7
+        continue-on-error: false
 
       - name: Render Mermaid diagram
         run: |

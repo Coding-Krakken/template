@@ -101,13 +101,15 @@ nodes:
     kind: gate
     description: >
       Verification gate.  Requires unit/integration/end‑to‑end tests to pass,
-      security scans to show zero critical vulnerabilities, and performance
-      measurements to meet non‑functional targets.  Failure leads to a fix
-      iteration.
+      security scans to show zero critical vulnerabilities, mutation testing
+      score to meet quality targets (≥70%), and performance measurements to 
+      meet non‑functional targets.  Failure leads to a fix iteration.
     requires:
       - metric: test.pass_rate >= 0.99
       - metric: security.critical_vulns == 0
+      - metric: mutation.score >= 0.7
       - metric: performance.p95_latency_ms <= target
+      - artifact: artifacts/evidence/mutation_score.json
     pass: E-experiment
     fail: N-fix
 
