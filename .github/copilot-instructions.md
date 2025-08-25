@@ -7,6 +7,13 @@
 - **Recalibration**: Triggered quarterly or after incidents (see `runbooks/calibration.md`). Update graph, policies, and document with ADRs.
 - **Mobile App**: React Native, entry at `apps/mobile/src/app.tsx`. Components in `components/`, navigation in `navigation/`, screens in `screens/`. Monaco Editor integrated via `EditorWebView.tsx`.
 
+## Dual Root Guidance
+This repository has two project roots:
+- The **application root** (current working directory) is for the main product code and development.
+- The **template root** (`template/`) contains the Universal Hybrid Process Template and all auxiliary files/artifacts for process enforcement, traceability, and evidence.
+
+Copilot must always distinguish which root a file or artifact belongs to. Application code, features, and product development are in the application root. Process, workflow, gates, artifacts, and compliance files are in the template root. All instructions, prompts, and automation should explicitly reference the correct root for each file or artifact.
+
 ## Developer Workflows
 - **Build**: Use `pnpm install` in root and app folders. Mobile app builds via standard React Native commands.
 - **Test**: Achieve ≥99% pass, ≥80% coverage, ≥70% mutation. Mutation testing: `mutmut run` (Linux/macOS) or `python ci/check_mutation.py` (Windows). Edit `ci/check_mutation.py` for source/test modules.

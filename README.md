@@ -4,6 +4,17 @@ This repository provides a **universal, language‑agnostic process framework** 
 
 The template is intentionally technology‑neutral—you can drop it into any project (web, mobile, backend, ML, hardware, etc.) and adapt the artifacts to your stack.  All process definitions and evidence are stored as code and checked into version control.  The built‑in scripts and policies enforce the gates in CI/CD and provide hooks for periodic recalibration.
 
+## Dual Root Guidance
+This repository is designed to be used alongside an application project root. There are **two project roots**:
+- The **application root** (current working directory) is for the main product code and development (e.g., mobile app, source, infra).
+- The **template root** (`template/`) contains the Universal Hybrid Process Template and all auxiliary files/artifacts for process enforcement, traceability, and evidence.
+
+When using Copilot or contributing:
+- Always distinguish which root a file or artifact belongs to.
+- Application code, features, and product development are in the application root.
+- Process, workflow, gates, artifacts, and compliance files are in the template root.
+- All instructions, prompts, and automation should explicitly reference the correct root for each file or artifact.
+
 ## Contents
 
 ```
