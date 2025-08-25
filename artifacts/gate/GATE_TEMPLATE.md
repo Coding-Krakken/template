@@ -6,6 +6,7 @@ requires:
   - artifact: path/to/required/artifact.md
   - metric: test.pass_rate >= 0.99
   - metric: security.critical_vulns == 0
+  - metric: mutation.score >= 70  # Enforced via ci/check_mutation.py
   - review: privacy.signoff == true
 evaluator: ci/policies/gates.rego
 ---
@@ -22,7 +23,7 @@ defined criteria before work proceeds.
 | Requirement | Evidence | Notes |
 |------------|---------|------|
 | **Artifact** | Provide the path to the required artifact in the repository | |
-| **Metric** | Specify the metric and the target threshold | |
+| **Metric** | Specify the metric and the target threshold (e.g., mutation.score ≥ 70, enforced via ci/check_mutation.py) | |
 | **Review** | Indicate whether a manual review or sign‑off is required | |
 
 Populate this section with links to the actual evidence once it is available.

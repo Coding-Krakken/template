@@ -158,11 +158,12 @@ Copilot should operate as a **process navigator + enforcer**:
 
 ## 📈 Roadmap
 
-* [ ] Integrate mutation testing into CI — Next step: add mutation testing to CI scripts and document evidence requirements
 * [ ] Automerge PRs that pass all gates
 * [ ] Add cost/performance budgets enforcement
 * [ ] Enable progressive delivery guardrails (flags, canaries)
 * [ ] Expand recalibration automation (metrics-driven)
+
+See [traceability_matrix.md](../../artifacts/traceability_matrix.md) for feature-to-evidence mapping and compliance tracking.
 
 ---
 
