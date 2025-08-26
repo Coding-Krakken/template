@@ -1,0 +1,23 @@
+**Refined Prompt for Copilot Agents**
+
+Review the entire codebase to understand the project vision, current implementation status, and gaps. Based on this, identify the **10 most optimal atomic tasks** that will add immediate functionality and value.
+
+Each task must:
+
+* Be small, independent, and completable in isolation.
+* Provide tangible progress toward the vision.
+* Avoid merge conflicts with other tasks (parallelizable).
+
+For each of the 10 tasks:
+
+1. **Create a Pull Request** that contains everything needed to implement the task.
+2. In each PR, **assign and instruct Copilot** with minimal requirements and standards (clean, tested, documented, traceable).
+3. Ensure the PR includes:
+
+   * Clear title and description.
+   * Test coverage and validation steps.
+   * Documentation updates if applicable (README, ADRs, CHANGELOG, runbooks).
+   * CI passing and code quality gates satisfied.
+
+Do not stop until **all 10 PRs are successfully created** and meet the defined requirements.
+
