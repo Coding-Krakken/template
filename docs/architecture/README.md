@@ -158,7 +158,7 @@ Copilot should operate as a **process navigator + enforcer**:
 
 ## 📈 Roadmap
 
-* [ ] Integrate mutation testing into CI — Next step: add mutation testing to CI scripts and document evidence requirements
+* [x] Integrate mutation testing into CI — ✅ **COMPLETED**: Added mutation testing to CI scripts with 70% quality gate and evidence requirements
 * [ ] Automerge PRs that pass all gates
 * [ ] Add cost/performance budgets enforcement
 * [ ] Enable progressive delivery guardrails (flags, canaries)
